@@ -1,10 +1,3 @@
-//TODO:
-//create an AJAX call to the giphy API to make sure it is working
-//have it go to console.log
-
-//TODO:
-//Create an array of strings, things that interest me.
-//10 buttons?
 var buttonArray = [
   "Mercury",
   "Venus",
@@ -29,9 +22,7 @@ function renderbuttons() {
   }
 
   $(document).on("click", ".topic", function() {
-    console.log("Click");
     var index = $(this).attr("data-value");
-    console.log(index, buttonArray[index]);
     displayImages(index);
   });
 }
@@ -45,7 +36,10 @@ function displayImages(i) {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    console.log(response);
+    var animated = response.data[0].images.downsized_large.url;
+    var still = response.data[0].images.downsized_still.url;
+    var rating = response.data[0].rating;
+    $("#displayArea").append(`<img src="${animated}" class="images">`);
 
     // loop the data
     // loop what info I need from the object

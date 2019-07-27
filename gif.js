@@ -1,21 +1,22 @@
 //array of pre-set buttons
 var buttonArray = [
-  "Rain",
-  "Snow",
-  "Tornado",
-  "Hurricane",
-  "Dust Devil",
-  "Water Spout",
-  "Sleet",
-  "Blizzard",
-  "Drought",
-  "Hail",
-  "Lightning",
-  "Sunny",
-  "Typhoon"
+  "Denver",
+  "Boulder",
+  "Ft. Colins",
+  "San Francisco",
+  "Portland",
+  "Tacoma",
+  "Minneapolis",
+  "El Paso",
+  "Kansas City",
+  "Vancouver",
+  "Los Angeles",
+  "Petaluma",
+  "Oakland",
+  "Santa Fe"
 ];
 
-//to make the topics render as buttons
+//to make the pre-picked topics render as buttons
 function renderbuttons() {
   $("#buttons").empty();
   for (var i = 0; i < buttonArray.length; i++) {
@@ -28,20 +29,26 @@ function renderbuttons() {
 }
 
 //to fetch then display the images
-function displayImages(i) {
+function displayImages(index) {
   var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=JzubCXWkSrfanIsUN38CVmpc6ihcHZiu&q=${
-    buttonArray[i]
-  }&limit=25&offset=0&rating=G&lang=en`;
-
+    buttonArray[index]
+  }&limit=10&offset=0&lang=en`;
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(response) {
     for (var i = 0; i < 10; i++) {
-      var animated = response.data[i].images.downsized_large.url;
-      var still = response.data[i].images.downsized_still.url;
+      var animated = response.data[i].images.fixed_height.url;
+      var still = response.data[i].images.fixed_height_still.url;
       var rating = response.data[i].rating;
-      $("#displayArea").append(`<img src="${animated}" class="images">`);
+      var title = response.data[i].title;
+      var images = $("<img>");
+      $(images).attr("src", still);
+      $(images).addClass("images");
+      $(images).attr("state", "still");
+      $(images).attr("data-img", i);
+      $("#displayArea").append(images);
+      console.log(response);
     }
   });
 }
@@ -49,21 +56,38 @@ function displayImages(i) {
 //to be able to tell which button was click on
 $(document).on("click", ".topic", function() {
   var index = $(this).attr("data-value");
+  //$("#displayArea").empty();
   displayImages(index);
+  console.log("index: " + index);
 });
 
-//to allow the user to add topics
+//to allow the user to add topics, then render that topic
 $(document).on("click", "#addtopic", function(event) {
   event.preventDefault();
   var topicinfo = $("#topic")
     .val()
     .trim();
-  console.log(topicinfo);
-  buttonArray.push(topicinfo);
-  renderbuttons();
+  if (topicinfo === "") {
+    alert("Please enter text.");
+  } else {
+    buttonArray.push(topicinfo);
+    renderbuttons();
+  }
 });
 
 //call to render the buttons (pre-made or otherwise)
 renderbuttons();
 
 //TODO: Add the ability to click a gif and have is become still or animated, opposite of whatever state it is in currently
+//TODO: List the Title of the Picture and the rating
+//TODO: Put the images inside another div so that we can put the title and rating in there comfortably.  Give the title and rating divs.
+//TODO: Need to do something with the image data attributes
+//NOTE: Nice to have integration with bandsintown api.
+
+$(document).on("click", ".images", function() {
+  var imgIndex = $(this).attr("data-img");
+  console.log(imgIndex);
+  console.log(this);
+  console.log(this.animated);
+  //make the rating, title, animated attributes so you can swap them around
+});

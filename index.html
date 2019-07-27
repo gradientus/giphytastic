@@ -16,16 +16,18 @@
   <body>
     <div id="buttons"></div>
     <div id="form">
-      <form>
-        <div class="form-group">
-          <label for="topic">topic</label>
-          <input type="input" class="form-control" id="topic" />
-        </div>
-
-        <button type="submit" class="btn btn-primary" id="addtopic">
-          Submit
-        </button>
-      </form>
+      <div class="form-group">
+        <form>
+          <label for="topic">Enter a Topic:</label>
+          <input type="text" class="form-control" id="topic" required />
+          <input
+            type="submit"
+            value="Submit"
+            class="btn btn-primary"
+            id="addtopic"
+          />
+        </form>
+      </div>
     </div>
     <div id="displayArea"></div>
     <script
@@ -37,5 +39,5 @@
   </body>
 </html>
 
-<!-- TODO: 
-  Make sure the user cannot submit a blank -->
+<!--TODO: Make sure this is responsive and looks good
+-->

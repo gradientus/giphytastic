@@ -1,19 +1,19 @@
 //array of pre-set buttons
 var buttonArray = [
-  "Denver",
-  "Boulder",
-  "Ft. Colins",
-  "San Francisco",
-  "Portland",
-  "Tacoma",
-  "Minneapolis",
-  "El Paso",
-  "Kansas City",
-  "Vancouver",
-  "Los Angeles",
-  "Petaluma",
-  "Oakland",
-  "Santa Fe"
+  "Zeus",
+  "Hera",
+  "Poseidon",
+  "Demeter",
+  "Athena",
+  "Apollo",
+  "Artemis",
+  "Ares",
+  "Aphrodite",
+  "Hephaestus",
+  "Hermes",
+  "Hestia",
+  "Dionysus",
+  "Hades"
 ];
 
 //to make the pre-picked topics render as buttons
@@ -47,7 +47,7 @@ function displayImages(index) {
       $(images).addClass("images");
       $(images).attr("state", "still");
       $(images).attr("data-img", i);
-      $("#displayArea").append(images);
+      $("#displayArea").prepend(images);
       console.log(response);
     }
   });
@@ -82,7 +82,6 @@ renderbuttons();
 //TODO: List the Title of the Picture and the rating
 //TODO: Put the images inside another div so that we can put the title and rating in there comfortably.  Give the title and rating divs.
 //TODO: Need to do something with the image data attributes
-//NOTE: Nice to have integration with bandsintown api.
 
 $(document).on("click", ".images", function() {
   var imgIndex = $(this).attr("data-img");

@@ -28,7 +28,7 @@ function renderbuttons() {
   }
 }
 
-//to fetch then display the images
+//to fetch images, assign values, then display the images
 function displayImages(index) {
   var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=JzubCXWkSrfanIsUN38CVmpc6ihcHZiu&q=${
     buttonArray[index]
@@ -42,10 +42,14 @@ function displayImages(index) {
       var still = response.data[i].images.fixed_height_still.url;
       var rating = response.data[i].rating;
       var title = response.data[i].title;
+
       var images = $("<img>");
-      $(images).attr("src", still);
       $(images).addClass("images");
+      $(images).attr("src", still);
       $(images).attr("state", "still");
+      $(images).attr("activesrc", animated);
+      $(images).attr("rating", rating);
+      $(images).attr("title", title);
       $(images).attr("data-img", i);
       $("#displayArea").prepend(images);
       console.log(response);
@@ -78,10 +82,10 @@ $(document).on("click", "#addtopic", function(event) {
 //call to render the buttons (pre-made or otherwise)
 renderbuttons();
 
-//TODO: Add the ability to click a gif and have is become still or animated, opposite of whatever state it is in currently
-//TODO: List the Title of the Picture and the rating
 //TODO: Put the images inside another div so that we can put the title and rating in there comfortably.  Give the title and rating divs.
+//TODO: List the Title of the Picture and the rating
 //TODO: Need to do something with the image data attributes
+//TODO: Add the ability to click a gif and have is become still or animated, opposite of whatever state it is in currently
 
 $(document).on("click", ".images", function() {
   var imgIndex = $(this).attr("data-img");

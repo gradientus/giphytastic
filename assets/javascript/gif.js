@@ -32,25 +32,33 @@ function renderbuttons() {
 function displayImages(index) {
   var queryURL = `https://api.giphy.com/v1/gifs/search?api_key=JzubCXWkSrfanIsUN38CVmpc6ihcHZiu&q=${
     buttonArray[index]
-  }&limit=10&offset=0`;
+  }&limit=12&offset=0`;
   $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i <= 10; i++) {
       var animated = response.data[i].images.fixed_height.url;
       var still = response.data[i].images.fixed_height_still.url;
       var rating = response.data[i].rating;
+
+      var imageRatingPlace = $("<div>");
+      $(imageRatingPlace).attr("id", "iRP");
+
+      var para = $("<p>");
+      para.text("Rating: " + rating);
 
       var images = $("<img>");
       $(images).addClass("images");
       $(images).attr("src", still);
       $(images).attr("state", "still");
-      $(images).attr("activesrc", animated);
-      $(images).attr("stillsrc", still);
+      $(images).attr("animatedSRC", animated);
+      $(images).attr("stillSRC", still);
       $(images).attr("rating", rating);
-      //$(images).attr("data-img", i);
-      $("#displayArea").prepend(images);
+
+      $("#iRP").append(para);
+      $("#iRP").append(images);
+      $("#displayArea").prepend(imageRatingPlace);
     }
   });
 }
@@ -58,7 +66,6 @@ function displayImages(index) {
 //to be able to tell which button was click on
 $(document).on("click", ".topic", function() {
   var index = $(this).attr("data-value");
-  //$("#displayArea").empty();
   displayImages(index);
 });
 
@@ -79,16 +86,19 @@ $(document).on("click", "#addtopic", function(event) {
 //call to render the buttons (pre-made or otherwise)
 renderbuttons();
 
-//TODO: Put the images inside another div so that we can put the title and rating in there comfortably.  Give the title and rating divs.
-//TODO: List the Title of the Picture and the rating
-//TODO: Need to do something with the image data attributes
 //TODO: Add the ability to click a gif and have is become still or animated, opposite of whatever state it is in currently
 
 $(document).on("click", ".images", function() {
-  // let still =
-  // let animated =
-  // let state =
+  let still = $(this).attr("stillSRC");
+  let animated = $(this).attr("animatedSRC");
+  let state = $(this).attr("state");
   let rating = $(this).attr("rating");
-  console.log(`Rating: ${rating}`);
-  //trade out values now.
+
+  if (state === "still") {
+    $(this).attr("src", animated);
+    $(this).attr("state", "animated");
+  } else {
+    $(this).attr("src", still);
+    $(this).attr("state", "still");
+  }
 });

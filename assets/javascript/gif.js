@@ -56,8 +56,8 @@ function displayImages(index) {
       $(images).attr("stillSRC", still);
       $(images).attr("rating", rating);
 
-      $("#iRP").append(para);
       $("#iRP").append(images);
+      $("#iRP").append(para);
       $("#displayArea").prepend(imageRatingPlace);
     }
   });

@@ -4,3 +4,10 @@
   margin: 0.2rem;
   padding: 0.5rem;
 }
+
+#iRP {
+  margin-top: 2rem;
+  font-family: Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}

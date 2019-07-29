@@ -4,49 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
-      />
-    <link rel="stylesheet" href="assets/css/main.css">
+    />
+    <link rel="stylesheet" href="assets/css/main.css" />
 
     <title>Giphytastic</title>
   </head>
   <body>
+    <header class="text-center">Giphytastic</header>
+    <div class="container">
+      <!--This is where the buttons will render-->
+      <div class="button text-center" id="buttons"></div>
 
-    <!--This is where the buttons will render-->
-    <div id="buttons"></div>
+      <div class="row">
+        <div class="col col-lg-12">
+          <!--This is where the search term form will render-->
+          <div id="form">
+            <form>
+              <label for="topic" class="enter">Enter a Topic:</label>
+              <input type="text" class="form-control" id="topic" required />
+              <input
+                type="submit"
+                value="Submit"
+                class="btn btn-primary button submit"
+                id="addtopic"
+              />
+            </form>
+          </div>
+        </div>
 
-    <!--This is where the search term form will render-->
-    <div id="form">
-      <div class="form-group">
-        <form>
-          <label for="topic">Enter a Topic:</label>
-          <input type="text" class="form-control" id="topic" required />
-          <input
-            type="submit"
-            value="Submit"
-            class="btn btn-primary"
-            id="addtopic"
-            />
-        </form>
+        <!--This is where the pictures will render-->
+      </div>
+
+      <div class="col col-lg-12">
+        <div id="displayArea"></div>
       </div>
     </div>
-
-    <!--This is where the pictures will render-->
-    <div id="displayArea"></div>
-
-
-
     <!--SCRIPTS-->
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="crossorigin="anonymous"></script>
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
     <script src="assets/javascript/gif.js"></script>
   </body>
 </html>
-
-<!--TODO: Make sure this is responsive and looks good
--->

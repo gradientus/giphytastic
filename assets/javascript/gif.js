@@ -13,7 +13,9 @@ var buttonArray = [
   "Hermes",
   "Hestia",
   "Dionysus",
-  "Hades"
+  "Hades",
+  "Eros",
+  "Hecate"
 ];
 
 //to make the pre-picked topics render as buttons

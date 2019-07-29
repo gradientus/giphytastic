@@ -1,8 +1,42 @@
+@font-face {
+  font-family: "Zeus";
+  src: url(VengefulGodsBB.ttf) format("truetype");
+}
+
+body {
+  background-image: url("../images/clouds.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+header,
+.button {
+  font-family: "Zeus", Arial, Helvetica, sans-serif;
+}
+
+header {
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.row {
+  margin-top: 2rem;
+}
+
 .topic {
   height: 6rem;
   width: 8rem;
   margin: 0.2rem;
   padding: 0.5rem;
+}
+
+.enter {
+  font-size: 1.5rem;
+}
+
+.submit {
+  margin-top: 0.7rem;
 }
 
 #iRP {
